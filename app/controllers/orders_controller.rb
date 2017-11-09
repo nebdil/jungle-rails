@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
+    UserMailer.welcome_email(@user).deliver_now
     order
   end
 
