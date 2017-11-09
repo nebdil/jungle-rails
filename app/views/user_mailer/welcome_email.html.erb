@@ -4,6 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
+<<<<<<< HEAD
     <h1>Welcome to example.com, <%= @user.name %></h1>
     <p>
       You have successfully signed up to example.com.<br>
@@ -12,5 +13,19 @@
       To login to the site, just follow this link: <%= @url %>.
     </p>
     <p>Thanks for joining and have a great day!</p>
+=======
+    <h1>Welcome to the Jungle,</h1>
+    <p>
+      You have successfully placed an order.<br>
+    </p>
+    <p>Thanks for ordering and have a great day!</p>
+    <p> Your order details are as follows:
+      <% @order.line_items.each do |line_item| %>
+      <%= render '/orders/lineItems', line_item: line_item %>
+      <% end %>
+    </p>
+    <p>Total amount paid: <%= @order.total_cents / 100.0 %></p>
+    <p>Jungle</p>
+>>>>>>> feature/order-receipt
   </body>
 </html>
