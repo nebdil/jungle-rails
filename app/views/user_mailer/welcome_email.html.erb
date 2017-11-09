@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to the Jungle,</h1>
+    <p>
+      You have successfully placed an order.<br>
+    </p>
+    <p>Thanks for ordering and have a great day!</p>
+    <p> Your order details are as follows:
+      <% @order.line_items.each do |line_item| %>
+      <%= render '/orders/lineItems', line_item: line_item %>
+      <% end %>
+    </p>
+    <p>Total amount paid: <%= @order.total_cents / 100.0 %></p>
+    <p>Jungle</p>
+  </body>
+</html>
