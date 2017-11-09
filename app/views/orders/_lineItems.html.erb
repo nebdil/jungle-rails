@@ -1,0 +1,40 @@
+<% @order.line_items.product.each do |e| %>
+  <% e.each do |a| %>
+    <li>
+      product_id: <%= a.product_id %>
+    </li>
+    <li>
+      quantity: <%= a.quantity %>
+    </li>
+    <li>item_price_cents: <%= a.item_price_cents %> </li>
+  <% end %>
+<% end %>
+
+<% @productArr.each do |e| %>
+  <li>
+    image:<%= e.image %>
+  </li>
+  <li>
+    name:<%= e.name %>
+  </li>
+  <li>
+    description:<%= e.description %>
+  </li>
+<% end %>
+
+<table>
+ <tr>
+   <th></th>
+   <th>Item</th>
+   <th>Description</th>
+   <th>Quantity</th>
+   <th>Price</th>
+ </tr>
+ <tr>
+   <th></th>
+   <th>Item</th>
+   <th>Description</th>
+   <th>Quantity</th>
+   <th>Price</th>
+ </tr>
+</table>
