@@ -26,37 +26,44 @@
       </div>
     </div>
 
-    <div>
-      <%= form_for @product, url: [@product, :reviews], method: :post do |f| %>
-        <ul>
-          <%= f.fields_for :review do |e| %>
-            <li>
-              Your Review: <%= e.text_area :description %>
-              Your Rating: <%= e.select :rating, [1, 2, 3, 4, 5]%>
-            </li>
-            <%= f.submit "Submit Review" %>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
+    <% if current_user %>
+      <div>
+        <%= form_for @product, url: [@product, :reviews], method: :post do |f| %>
+          <ul>
+            <%= f.fields_for :review do |e| %>
+              <li>
+                Your Review: <%= e.text_area :description %>
+                Your Rating: <%= e.select :rating, [1, 2, 3, 4, 5]%>
+              </li>
+              <%= f.submit "Submit Review" %>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
+    <% end %>
 
     <div class="row">
-      <% @product.reviews.each do |e| %>
-        <div class="col-md-3">
+      <% @product.reviews.reverse_each do |e| %>
+        <div>
           <p>
             User id: <%= e.user_id %>
           </p>
         </div>
-        <div class="col-md-6">
+        <div>
           <p>
             Review: <%= e.description %>
           </p>
         </div>
-        <div class="col-md-3">
+        <div>
           <p>
             Rating: <%= e.rating %>
           </p>
         </div>
+        <% if current_user.id == e.user_id %>
+          <div>
+            <%= button_to('Delete', product_review_path(@product, e), method: :delete) %>
+          </div>
+        <% end %>
       <% end %>
     </div>
 
