@@ -26,6 +26,26 @@
       </div>
     </div>
 
+    <div class="row">
+      <% @product.reviews.each do |e| %>
+        <div class="col-md-3">
+          <p>
+            User id: <%= e.user_id %>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <p>
+            Review: <%= e.description %>
+          </p>
+        </div>
+        <div class="col-md-3">
+          <p>
+            Rating: <%= e.rating %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
   </article>
 
 </section>

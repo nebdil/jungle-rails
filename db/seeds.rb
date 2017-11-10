@@ -132,5 +132,21 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## USERS
+
+puts "Creating users..."
+
+user1 = User.create!(name: Faker::Internet.user_name, email: Faker::Internet.email, password: Faker::Internet.password(6))
+
+
+## REVIEWS
+
+puts "Creating reviews..."
+
+review2 = Review.create!(product_id: 3, user_id: 1, description: "had a lot of problems", rating: 1)
+review3 = Review.create!(product_id: 5, user_id: 1, description: "i only give 2 just bcz it came on time", rating: 2)
+review4 = Review.create!(product_id: 6, user_id: 1, description: "meh", rating: 3)
+review5 = Review.create!(product_id: 2, user_id: 1, description: "love it but too expensive", rating: 4)
+
 
 puts "DONE!"
