@@ -26,6 +26,20 @@
       </div>
     </div>
 
+    <div>
+      <%= form_for @product, url: [@product, :reviews], method: :post do |f| %>
+        <ul>
+          <%= f.fields_for :review do |e| %>
+            <li>
+              Your Review: <%= e.text_area :description %>
+              Your Rating: <%= e.select :rating, [1, 2, 3, 4, 5]%>
+            </li>
+            <%= f.submit "Submit Review" %>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
     <div class="row">
       <% @product.reviews.each do |e| %>
         <div class="col-md-3">
