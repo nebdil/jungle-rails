@@ -7,7 +7,11 @@ class UsersController < ApplicationController
       if user.save
         session[:user_id] = user.id
         redirect_to '/'
+      elsif User.find_by(email: params[:user][:email])
+        flash[:notice] = "Email is taken!"
+        redirect_to '/signup'
       else
+        flash[:notice] = "Something went wrong while signing up"
         redirect_to '/signup'
       end
     end
