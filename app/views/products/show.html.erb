@@ -44,31 +44,33 @@
 
     <div class="row">
       <% @product.reviews.reverse_each do |e| %>
-        <div>
-          <p>
-            User id: <%= e.user_id %>
-          </p>
-        </div>
-        <div>
-          <p>
-            Review: <%= e.description %>
-          </p>
-        </div>
-        <div>
-          <p>
-            Rating: <%= e.rating %>
-          </p>
-        </div>
-        <% if current_user.id == e.user_id %>
-          <div>
-            <%= button_to('Delete', product_review_path(@product, e), method: :delete) %>
-          </div>
-        <% end %>
+      <table class="table table-striped">
+        <tr>
+          <th>User ID</th>
+          <th>Review</th>
+          <th>Rating</th>
+          <% if current_user && current_user.id == e.user_id %>
+            <th></th>
+          <% end %>
+        </tr>
+        <tr>
+          <td><%= e.user_id %></td>
+          <td><%= e.description %></td>
+          <td><%= e.rating %></td>
+          <% if current_user && current_user.id == e.user_id %>
+            <td><%= button_to('Delete', product_review_path(@product, e), method: :delete) %></td>
+          <% end %>
+        </tr>
+      </table>
       <% end %>
     </div>
 
     <div>
-      Overall review: <%= @overall_review %>/5
+      Overall review:
+      <% if @overall_rating %>
+        <%= @overall_rating.round(1) %>
+      <% end %>
+      /5
     </div>
 
   </article>
