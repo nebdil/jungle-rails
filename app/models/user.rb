@@ -3,5 +3,10 @@ class User < ActiveRecord::Base
 
   has_many :reviews
 
-  validates :email, uniqueness: true
+  validates_uniqueness_of :email, case_sensitive: false
+  validates :email, presence: true
+  validates :name, presence: true
+  validates :password, presence: true
+  validates :password, length: { minimum: 6 }
+  validates :password_confirmation, presence: true
 end
